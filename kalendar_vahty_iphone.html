@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111114">
+<title>Календарь вахты</title>
+<style>
+:root{color-scheme:dark;--bg:#0d0d10;--panel:#17171c;--panel2:#202027;--text:#f5f5f7;--muted:#a4a4b0;--red:#ff4545;--green:#45d483;--line:#303039}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#171116 0,#0d0d10 340px);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:env(safe-area-inset-top) 14px calc(22px + env(safe-area-inset-bottom));}
+main{max-width:620px;margin:0 auto}.top{padding:22px 4px 16px}.eyebrow{font-size:12px;color:#ff7777;letter-spacing:1.7px;text-transform:uppercase;font-weight:800}.top h1{font-size:30px;line-height:1.08;margin:8px 0}.sub{color:var(--muted);font-size:14px}
+.card{background:rgba(23,23,28,.96);border:1px solid var(--line);border-radius:20px;padding:17px;margin-bottom:13px;box-shadow:0 8px 26px #0002}
+.countgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{background:var(--panel2);padding:15px;border-radius:15px}.metric small{color:var(--muted);display:block;font-size:12px;margin-bottom:7px}.metric strong{font-size:27px;letter-spacing:-.6px}.metric .caption{font-size:12px;color:var(--muted);margin-top:4px}
+.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.sectionhead h2{font-size:17px;margin:0}.monthnav{display:flex;align-items:center;gap:12px}.monthnav button{width:34px;height:34px;border:1px solid var(--line);border-radius:11px;background:var(--panel2);color:white;font-size:18px}
+.monthlabel{font-weight:750;min-width:130px;text-align:center}
+.weekdays,.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.weekdays div{text-align:center;color:var(--muted);font-size:11px;padding:5px 0}.day{aspect-ratio:1;border-radius:11px;background:#222229;display:flex;align-items:center;justify-content:center;position:relative;font-size:13px;border:1px solid transparent;min-width:0}.day.empty{background:transparent}.day.work{background:#4c1f24;border-color:#773039;color:#ffb7b7}.day.rest{background:#153a2a;border-color:#24583f;color:#a8f0c8}.day.today{outline:2px solid white;outline-offset:1px}.day.selected{box-shadow:inset 0 0 0 2px #fff}.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;color:var(--muted);font-size:12px}.dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px}.dot.work{background:var(--red)}.dot.rest{background:var(--green)}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;color:var(--muted);font-size:12px;margin:0 0 7px}.field input{width:100%;background:#101014;color:white;border:1px solid #3b3b46;border-radius:12px;padding:12px 10px;font:inherit;min-width:0}.actions{display:flex;gap:9px;margin-top:14px}.btn{border:0;border-radius:12px;padding:13px 14px;font:inherit;font-weight:750;cursor:pointer}.primary{background:var(--red);color:white;flex:1}.secondary{background:#292930;color:white}.notice{font-size:12px;color:var(--muted);line-height:1.45;margin-top:11px}.status{font-size:14px;line-height:1.5}.status strong{color:#fff}.footer{text-align:center;color:#747480;font-size:11px;padding:10px 0 18px}
+@media(max-width:360px){body{padding-left:10px;padding-right:10px}.card{padding:13px}.day{font-size:12px;border-radius:8px}.metric strong{font-size:24px}.fields{gap:8px}}
+</style>
+</head>
+<body>
+<main>
+<header class="top">
+  <div class="eyebrow">Личный график</div>
+  <h1>Календарь вахты</h1>
+  <div class="sub">Рабочие дни, отдых и обратный отсчёт — даже без интернета</div>
+</header>
+<section class="card">
+  <div class="countgrid">
+    <div class="metric"><small id="countLabel">До конца вахты</small><strong id="count">—</strong><div class="caption" id="countCaption">дней</div></div>
+    <div class="metric"><small>Статус сегодня</small><strong id="todayStatus" style="font-size:21px">—</strong><div class="caption" id="todayDate">—</div></div>
+  </div>
+</section>
+<section class="card">
+  <div class="sectionhead">
+    <h2>Календарь</h2>
+    <div class="monthnav"><button id="prev" aria-label="Предыдущий месяц">‹</button><div class="monthlabel" id="monthLabel"></div><button id="next" aria-label="Следующий месяц">›</button></div>
+  </div>
+  <div class="weekdays"><div>ПН</div><div>ВТ</div><div>СР</div><div>ЧТ</div><div>ПТ</div><div>СБ</div><div>ВС</div></div>
+  <div class="days" id="days"></div>
+  <div class="legend"><span><i class="dot work"></i>Вахта</span><span><i class="dot rest"></i>Отдых</span><span>Белая рамка — сегодня</span></div>
+</section>
+<section class="card">
+  <div class="sectionhead"><h2>Настройки графика</h2></div>
+  <div class="fields">
+    <div class="field"><label for="startDate">Первый день вахты</label><input id="startDate" type="date" value="2026-09-23"></div>
+    <div class="field"><label for="workDays">Дней на вахте</label><input id="workDays" type="number" min="1" max="365" value="60"></div>
+    <div class="field"><label for="restDays">Дней отдыха</label><input id="restDays" type="number" min="0" max="365" value="30"></div>
+  </div>
+  <div class="actions"><button class="btn primary" id="save">Сохранить график</button><button class="btn secondary" id="today">Сегодня</button></div>
+  <div class="notice">Начальные данные заполнены по твоему предыдущему графику: начало — 23.09.2026, вахта — 60 дней. Отдых установлен на 30 дней как редактируемое значение. Данные сохраняются в этом браузере на устройстве.</div>
+</section>
+<div class="footer">Календарь работает локально. Разрешение на уведомления не требуется.</div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const monthNames=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+const today=new Date(); today.setHours(0,0,0,0);
+let view=new Date(today.getFullYear(),today.getMonth(),1);
+let config={start:'2026-09-23',work:60,rest:30};
+try{const saved=JSON.parse(localStorage.getItem('shiftCalendarConfig')||'null');if(saved)config={...config,...saved}}catch(e){}
+function parseDate(s){const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)}
+function dateKey(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function daysBetween(a,b){return Math.round((a-b)/86400000)}
+function stateFor(d){const start=parseDate(config.start);const diff=daysBetween(d,start);if(diff<0)return 'before';const cycle=Number(config.work)+Number(config.rest);if(cycle<=0)return 'before';return (diff%cycle)<Number(config.work)?'work':'rest'}
+function fmt(d){return d.toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})}
+function render(){
+ $('monthLabel').textContent=monthNames[view.getMonth()]+' '+view.getFullYear();
+ const first=new Date(view.getFullYear(),view.getMonth(),1),last=new Date(view.getFullYear(),view.getMonth()+1,0);
+ let offset=(first.getDay()+6)%7,html='';
+ for(let i=0;i<offset;i++)html+='<div class="day empty"></div>';
+ for(let n=1;n<=last.getDate();n++){
+  const d=new Date(view.getFullYear(),view.getMonth(),n),state=stateFor(d);
+  const cls=['day',state==='work'?'work':state==='rest'?'rest':'',d.getTime()===today.getTime()?'today':''].filter(Boolean).join(' ');
+  html+=`<div class="${cls}" title="${fmt(d)}">${n}</div>`;
+ }
+ $('days').innerHTML=html;
+ const s=stateFor(today),start=parseDate(config.start),cycle=Number(config.work)+Number(config.rest),diff=daysBetween(today,start);
+ $('todayStatus').textContent=s==='work'?'На вахте':s==='rest'?'Отдых':'До начала';
+ $('todayDate').textContent=fmt(today);
+ let remaining;
+ if(s==='before') {remaining=daysBetween(start,today);$('countLabel').textContent='До начала вахты';$('countCaption').textContent=remaining===1?'день':'дней';}
+ else if(s==='work'){remaining=Number(config.work)-(diff%cycle)-1;$('countLabel').textContent='До конца вахты';$('countCaption').textContent=remaining===1?'день':'дней';}
+ else {remaining=cycle-(diff%cycle);$('countLabel').textContent='До следующей вахты';$('countCaption').textContent=remaining===1?'день':'дней';}
+ $('count').textContent=Math.max(0,remaining);
+}
+function loadFields(){$('startDate').value=config.start;$('workDays').value=config.work;$('restDays').value=config.rest}
+$('prev').onclick=()=>{view=new Date(view.getFullYear(),view.getMonth()-1,1);render()};
+$('next').onclick=()=>{view=new Date(view.getFullYear(),view.getMonth()+1,1);render()};
+$('today').onclick=()=>{view=new Date(today.getFullYear(),today.getMonth(),1);render()};
+$('save').onclick=()=>{
+ const start=$('startDate').value,work=Number($('workDays').value),rest=Number($('restDays').value);
+ if(!start||!Number.isInteger(work)||work<1||work>365||!Number.isInteger(rest)||rest<0||rest>365){alert('Проверь дату и количество дней. Вахта: 1–365, отдых: 0–365.');return}
+ config={start,work,rest};
+ try{localStorage.setItem('shiftCalendarConfig',JSON.stringify(config))}catch(e){}
+ render();
+};
+loadFields();render();
+</script>
+</body>
+</html>
