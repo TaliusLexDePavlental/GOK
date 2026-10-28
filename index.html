@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#171416">
+<meta name="description" content="«Пока мы выбираем друг друга» — Тест-драйв любви 1.0. Книга Талиуса Лекса де Павленталя о взаимодействии, памяти и выборе в отношениях.">
+<title>ПОКА МЫ ВЫБИРАЕМ ДРУГ ДРУГА — Тест-драйв любви — 1.0</title>
+<style>
+:root{
+ --ink:#302824;--muted:#81736c;--paper:#f6f0e7;--paper2:#eee4d8;--accent:#8f4f52;--accent2:#c29a62;--line:rgba(60,42,35,.16);--panel:#fbf8f2;--reader-size:19px;--shadow:0 22px 70px rgba(42,30,24,.11);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--paper);background-image:radial-gradient(ellipse at 12% 0%,rgba(194,154,98,.09),transparent 42%);color:var(--ink);font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.65;transition:background-color .28s,color .28s}
+body[data-theme="paper"]{--ink:#302824;--muted:#81736c;--paper:#f6f0e7;--paper2:#eee4d8;--accent:#8f4f52;--accent2:#c29a62;--line:rgba(60,42,35,.16);--panel:#fbf8f2;--shadow:0 22px 70px rgba(42,30,24,.11);color-scheme:light}
+body[data-theme="night"]{--ink:#f3e8ed;--muted:#b9a5b4;--paper:#17121d;--paper2:#251a2a;--accent:#df91ad;--accent2:#e5c078;--line:rgba(255,232,245,.16);--panel:#211827;--shadow:0 22px 70px rgba(0,0,0,.38);background-image:radial-gradient(ellipse at 88% 0%,rgba(123,76,145,.24),transparent 45%),radial-gradient(ellipse at 2% 50%,rgba(146,61,92,.1),transparent 48%);color-scheme:dark}
+body[data-theme="rose"]{--ink:#412a34;--muted:#886974;--paper:#f4e2e6;--paper2:#e9cfd5;--accent:#9c405e;--accent2:#bd8b4e;--line:rgba(91,46,62,.2);--panel:#fcf1f2;--shadow:0 22px 70px rgba(102,43,66,.13);background-image:radial-gradient(ellipse at 90% 0%,rgba(191,123,142,.18),transparent 48%);color-scheme:light}
+a{color:inherit}
+button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px clamp(16px,4vw,54px);background:color-mix(in srgb,var(--paper) 88%, transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+.brand-mark{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--accent);color:var(--panel);background:var(--accent);font-size:13px;letter-spacing:-.05em;flex-shrink:0;box-shadow:3px 3px 0 color-mix(in srgb,var(--accent) 20%,transparent)}
+.brand-text{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.brand-text strong{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.brand-text span{font-size:11px;color:var(--muted);margin-top:4px}
+.toolbar{display:flex;align-items:center;gap:7px;flex-shrink:0}
+.tool-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;min-width:42px;padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);font-family:Arial,sans-serif;font-size:13px;transition:background .18s,border-color .18s,transform .15s,box-shadow .18s}
+.tool-btn:active{transform:scale(.96)}
+.tool-btn:focus-visible{outline:3px solid var(--accent2);outline-offset:2px}
+.tool-btn#themeToggle{border-color:color-mix(in srgb,var(--accent) 55%,var(--line));background:color-mix(in srgb,var(--accent) 9%,var(--panel))}
+.theme-icon{font-size:17px;line-height:1}
+.tool-label{white-space:nowrap}
+.tool-btn:hover{border-color:var(--accent);background:var(--paper2)}
+.tool-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.progress-track{position:fixed;top:0;left:0;right:0;height:3px;z-index:80;background:transparent}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .08s linear}
+.hero{position:relative;min-height:min(780px,calc(100svh - 60px));display:grid;grid-template-columns:minmax(0,.92fr) minmax(300px,1.08fr);align-items:stretch;overflow:hidden;background:var(--paper2);border-bottom:1px solid var(--line)}
+.hero:before{content:"";position:absolute;z-index:1;left:0;right:0;bottom:0;height:5px;background:linear-gradient(90deg,var(--accent),var(--accent2),transparent)}
+.hero-copy{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:clamp(36px,7vw,100px);padding-right:clamp(26px,5vw,70px);background:linear-gradient(120deg,var(--paper) 5%,color-mix(in srgb,var(--paper) 93%,transparent) 75%,transparent)}
+.hero-copy:after{content:"01 / 15";position:absolute;right:22px;top:24px;color:var(--accent);font:700 10px/1 Arial,sans-serif;letter-spacing:.19em;opacity:.75}
+.eyebrow{margin:0 0 15px;color:var(--accent);font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+.hero h1{max-width:750px;margin:0;font-size:clamp(46px,6.1vw,88px);line-height:.98;font-weight:500;letter-spacing:-.045em;text-transform:uppercase}
+.hero-subtitle{max-width:470px;margin:24px 0 0;color:var(--muted);font-size:clamp(17px,1.75vw,22px);font-style:italic;line-height:1.5}
+.author-line{display:flex;align-items:center;gap:13px;margin-top:32px;color:var(--muted);font-size:14px}
+.author-line:before{content:"";width:34px;height:1px;background:var(--accent)}
+.hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:35px}
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:14px 20px;border:1px solid var(--accent);border-radius:3px;background:var(--accent);color:#fff;text-decoration:none;font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;box-shadow:0 7px 22px color-mix(in srgb,var(--accent) 22%,transparent);transition:transform .2s,background .2s,box-shadow .2s}
+.cta:hover{transform:translateY(-2px);background:#754043}
+.hero-note{font-family:Arial,sans-serif;color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.hero-art{position:relative;min-height:560px;background:#292322}
+.hero-art img{display:block;width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center 45%}
+.hero-art:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--paper2) 0%,rgba(20,15,15,.02) 28%,rgba(13,11,11,.1) 100%),linear-gradient(0deg,rgba(10,8,8,.28),transparent 38%)}
+.hero-vertical-label{position:absolute;z-index:2;bottom:28px;right:28px;color:#f7eee4;font-size:11px;letter-spacing:.22em;text-transform:uppercase;writing-mode:vertical-rl}
+.quote-wrap{padding:clamp(36px,7vw,86px) 24px;background:var(--paper);}
+.quote-card{position:relative;max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 210px;gap:30px;align-items:center;padding:clamp(28px,5vw,58px);background:linear-gradient(135deg,var(--panel),color-mix(in srgb,var(--paper2) 35%,var(--panel)));border:1px solid var(--line);border-top:3px solid var(--accent);box-shadow:var(--shadow);overflow:hidden}
+.quote-card:before{content:'“';position:absolute;left:20px;top:-52px;color:color-mix(in srgb,var(--accent) 17%, transparent);font-size:250px;line-height:1}
+.quote-copy{position:relative;z-index:1}
+.quote-copy blockquote{margin:0;font-size:clamp(24px,3.1vw,39px);font-style:italic;line-height:1.35;letter-spacing:-.025em}
+.quote-copy cite{display:block;margin-top:24px;color:var(--muted);font-size:14px;font-style:normal}
+.quote-art{width:100%;height:170px;object-fit:cover;border-radius:2px;opacity:.9;filter:saturate(.75)}
+.reader-shell{max-width:1500px;margin:0 auto;padding:0 clamp(16px,4vw,58px) 80px}
+.reader-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;padding:28px 0;border-bottom:1px solid var(--line)}
+.reader-heading h2{margin:0;font-size:clamp(24px,3vw,36px);font-weight:500}
+.reader-heading p{margin:0;color:var(--muted);font-size:13px}
+.reader-layout{display:grid;grid-template-columns:250px minmax(0,850px);justify-content:center;gap:clamp(28px,5vw,80px);align-items:start;padding-top:32px}
+.toc-panel{position:sticky;top:88px;max-height:calc(100svh - 110px);overflow:auto;padding:22px 16px 20px 0;border-right:1px solid var(--line);scrollbar-width:thin}
+.toc-heading{margin:0 0 16px;padding:0 12px;font-family:Arial,sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.toc-link{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;border-left:2px solid transparent;text-decoration:none;color:var(--muted);font-size:13px;line-height:1.35;transition:color .15s,border-color .15s,background .15s}
+.toc-link small{flex-shrink:0;color:color-mix(in srgb,var(--muted) 70%,transparent);font-family:Arial,sans-serif;font-size:9px;letter-spacing:.08em;text-transform:uppercase}
+.toc-link:hover,.toc-link.active{color:var(--ink);border-left-color:var(--accent);background:color-mix(in srgb,var(--accent) 7%,transparent)}
+.book-text{min-width:0}
+.book-section{padding:clamp(42px,7vw,88px) 0;border-bottom:1px solid var(--line);scroll-margin-top:85px}
+.section-mast{display:grid;grid-template-columns:minmax(0,.85fr) minmax(240px,1.15fr);gap:clamp(20px,4vw,42px);align-items:center;margin-bottom:clamp(28px,4vw,48px)}
+.section-mast-copy{min-width:0}
+.section-mast h2{margin:0;font-weight:500;font-size:clamp(32px,4.2vw,54px);line-height:1.06;letter-spacing:-.035em}
+.section-art{display:block;width:100%;height:clamp(150px,21vw,260px);object-fit:cover;box-shadow:var(--shadow);filter:saturate(.88) contrast(1.03);border:1px solid color-mix(in srgb,var(--accent) 22%,var(--line));transition:filter .28s,box-shadow .28s}
+body[data-theme="night"] .section-art{filter:saturate(.82) brightness(.84) contrast(1.08)}
+body[data-theme="rose"] .section-art{filter:saturate(.95) sepia(.08)}
+.law-mast{grid-template-columns:minmax(0,1fr) minmax(240px,.9fr)}
+.law-note{margin:30px 0 0;padding:19px 22px;border-left:3px solid var(--accent);background:var(--paper2);font-size:clamp(18px,2vw,23px);font-style:italic;line-height:1.5}
+.prose{font-size:var(--reader-size);line-height:1.9;letter-spacing:.003em}
+.prose p{margin:0 0 1.35em}
+.prose p:last-child{margin-bottom:0}
+.pullquote{margin:2.2em 0 2.3em;padding:0 0 0 23px;border-left:2px solid var(--accent);color:var(--accent);font-size:clamp(21px,2.5vw,29px);line-height:1.48;font-style:italic}
+.chapter-mast{grid-template-columns:minmax(0,.85fr) minmax(220px,1.15fr)}
+.chapter-mast .eyebrow{margin-bottom:14px}
+.chapter-mast h2{max-width:450px}
+.conclusion-section{padding-bottom:24px}
+.end-note{margin-top:36px;padding:26px;border:1px solid var(--line);background:var(--panel);text-align:center}
+.end-note p{margin:0;font-size:clamp(18px,2.5vw,27px);font-style:italic}
+.footer{display:flex;justify-content:space-between;gap:20px;max-width:1100px;margin:0 auto;padding:30px 22px 45px;color:var(--muted);font-size:12px}
+.scrim{display:none}
+.theme-toast{position:fixed;z-index:90;left:50%;top:calc(env(safe-area-inset-top, 0px) + 70px);transform:translate(-50%,-8px);padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--ink);box-shadow:var(--shadow);font:600 12px/1.2 Arial,sans-serif;letter-spacing:.04em;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;white-space:nowrap}
+.theme-toast.visible{opacity:1;transform:translate(-50%,0)}
+.mobile-close{display:none}
+@media(max-width:980px){
+ .hero{grid-template-columns:1fr 1fr;min-height:650px}
+ .hero-copy{padding:45px 28px}
+ .hero-art{min-height:650px}
+ .reader-layout{grid-template-columns:220px minmax(0,1fr);gap:28px}
+ .section-mast{grid-template-columns:minmax(0,1fr) minmax(180px,1fr)}
+}
+@media(max-width:720px){
+ html{scroll-padding-top:75px}
+ .topbar{padding:8px 10px;gap:7px}
+ .brand{gap:7px;max-width:142px}
+ .brand-mark{width:34px;height:34px;font-size:11px}
+ .brand-text strong{font-size:9px;line-height:1.2;letter-spacing:.055em}
+ .brand-text span{display:none}
+ .toolbar{gap:5px}
+ .tool-btn{min-height:44px;min-width:44px;padding:7px 9px;font-size:15px;border-radius:8px}
+ .tool-btn#tocToggle{padding:7px 9px}
+ .tool-btn.hide-label{font-size:16px;min-width:44px;padding:6px}
+ .tool-label{display:none}
+ .hero{position:relative;display:block;height:calc(100vh - 56px);height:calc(100svh - 56px);min-height:590px;max-height:920px;background:#17121d;color:#fff}
+ .hero-copy{position:relative;z-index:3;display:flex;height:100%;min-height:100%;justify-content:flex-end;padding:52px 24px 42px;background:linear-gradient(180deg,rgba(12,8,13,.06) 0%,rgba(12,8,13,.12) 25%,rgba(12,8,13,.52) 55%,rgba(12,8,13,.92) 100%);color:#fff}
+ .hero-copy:after{right:19px;top:20px;font-size:9px;color:rgba(255,245,239,.92)}
+ .hero .eyebrow{color:var(--accent2);text-shadow:0 1px 12px rgba(0,0,0,.5)}
+ .hero h1{font-size:clamp(43px,11.5vw,61px);max-width:570px;color:#fff;text-shadow:0 3px 28px rgba(0,0,0,.45)}
+ .hero-subtitle{font-size:19px;margin-top:20px;color:rgba(255,246,241,.86);text-shadow:0 2px 16px rgba(0,0,0,.6)}
+ .hero .author-line{color:rgba(255,246,241,.88)}
+ .hero .author-line:before{background:var(--accent2)}
+ .hero .hero-note{color:rgba(255,246,241,.75)}
+ .hero-art{position:absolute;inset:0;z-index:1;width:100%;height:100%;min-height:0;max-height:none;order:0}
+ .hero-art img{object-position:center 48%;}
+ .hero-art:after{background:linear-gradient(180deg,rgba(10,7,12,.18) 0%,rgba(10,7,12,.03) 24%,rgba(10,7,12,.22) 43%,rgba(10,7,12,.76) 72%,rgba(10,7,12,.94) 100%)}
+ .hero-vertical-label{right:14px;top:45%;bottom:auto;color:rgba(255,246,241,.78)}
+ .hero-actions .cta{box-shadow:0 8px 26px rgba(0,0,0,.25)}
+ .quote-wrap{padding:26px 14px 38px}
+ .quote-card{grid-template-columns:1fr;padding:31px 23px 24px;gap:18px;border-top-width:4px}
+ .quote-card:before{left:8px;top:-36px;font-size:190px}
+ .quote-copy blockquote{font-size:clamp(22px,6.2vw,31px)}
+ .quote-art{height:95px}
+ .reader-shell{padding:0 18px 55px}
+ .reader-heading{display:block;padding:25px 0}
+ .reader-heading p{margin-top:7px}
+ .reader-layout{display:block;padding-top:0}
+ .toc-panel{position:fixed;z-index:70;top:0;bottom:0;left:0;width:min(88vw,360px);max-height:none;padding:24px 14px 35px 16px;background:var(--panel);border-right:1px solid var(--line);box-shadow:var(--shadow);transform:translateX(-105%);transition:transform .24s ease;overflow:auto}
+ body.toc-open .toc-panel{transform:translateX(0)}
+ body.toc-open .scrim{display:block;position:fixed;inset:0;z-index:65;background:rgba(10,7,8,.55)}
+ .toc-heading{padding:9px 10px 14px}
+ .toc-link{padding:12px 10px;font-size:14px}
+ .mobile-close{display:inline-flex;float:right;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid var(--line);border-radius:4px;background:transparent;color:var(--ink)}
+ .book-section{padding:55px 0}
+ .section-mast,.law-mast,.chapter-mast{display:flex;flex-direction:column;align-items:stretch;gap:18px;margin-bottom:30px}
+ .section-mast-copy{order:0}
+ .section-art{order:1;height:clamp(170px,55vw,260px);width:100%}
+ .section-mast h2{font-size:clamp(33px,9vw,46px)}
+ .prose{font-size:var(--reader-size);line-height:1.82}
+ .pullquote{font-size:23px;margin:1.8em 0;padding-left:18px}
+ .law-note{font-size:19px;padding:17px}
+ .footer{display:block;padding:24px 20px 35px}
+ .footer span{display:block;margin:5px 0}
+}
+@media(max-width:390px){
+ .brand-text span{display:none}
+ .tool-btn{padding:6px 7px}
+ .hero-copy{padding:45px 19px 34px}
+ .hero h1{font-size:42px}
+ .hero-actions{gap:10px}
+ .hero-note{font-size:10px}
+}
+@media(max-width:380px){
+ .brand{max-width:38px}
+ .brand-text{display:none}
+ .topbar{padding-left:8px;padding-right:8px;gap:5px}
+ .toolbar{gap:4px}
+ .tool-btn,.tool-btn.hide-label{min-width:42px;min-height:44px;padding:6px}
+ .hero h1{font-size:clamp(39px,11.5vw,48px)}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+@media print{
+ .topbar,.progress-track,.toolbar,.toc-panel,.scrim,.hero-actions{display:none!important}
+ body{background:white;color:#222}
+ .hero{min-height:auto;display:block;break-after:page}
+ .hero-copy{padding:40px;background:white}
+ .hero-art{display:none}
+ .reader-layout{display:block}
+ .book-section{break-inside:avoid-page;padding:30px 0}
+ .section-art{height:120px;box-shadow:none}
+ .prose{font-size:12pt}
+}
+</style>
+</head>
+<body data-theme="paper">
+<div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="На начало книги">
+    <span class="brand-mark">ПМД</span>
+    <span class="brand-text"><strong>Пока мы выбираем друг друга</strong><span>Тест-драйв любви · 1.0</span></span>
+  </a>
+  <div class="toolbar" aria-label="Настройки чтения">
+    <button class="tool-btn" id="tocToggle" type="button" aria-expanded="false" aria-controls="contents" aria-label="Открыть содержание"><span aria-hidden="true">☰</span><span class="tool-label">Содержание</span></button>
+    <button class="tool-btn hide-label" id="fontDown" type="button" aria-label="Уменьшить размер текста" title="Уменьшить текст">A−</button>
+    <button class="tool-btn hide-label" id="fontUp" type="button" aria-label="Увеличить размер текста" title="Увеличить текст">A+</button>
+    <button class="tool-btn hide-label" id="themeToggle" type="button" aria-label="Сменить тему оформления" title="Сменить тему оформления" aria-live="polite"><span class="theme-icon" aria-hidden="true">◐</span><span class="tool-label">Тема</span></button>
+  </div>
+</header>
+<section class="hero" id="top">
+  <div class="hero-copy">
+    <p class="eyebrow">Тест-драйв любви · 1.0</p>
+    <h1>Пока мы выбираем друг друга</h1>
+    <p class="hero-subtitle">Не время собирает пазл. Его собирает взаимодействие.</p>
+    <div class="author-line">Талиус Лекс де Павленталь</div>
+    <div class="hero-actions"><a class="cta" href="#law">Начать чтение <span aria-hidden="true">↘</span></a><span class="hero-note">Основной закон · 13 глав · заключение</span></div>
+  </div>
+  <div class="hero-art"><img src="assets/cover-scene.jpg" alt="Два человека сидят рядом на фоне гор, перед ними детали пазла"><span class="hero-vertical-label">О любви, опыте и выборе</span></div>
+</section>
+<section class="quote-wrap" aria-label="Главная цитата книги">
+  <div class="quote-card">
+    <div class="quote-copy"><blockquote>Тест-драйв любви измеряется не временем отношений,<br>а количеством и качеством ситуаций,<br>в которых партнёры успели увидеть друг друга настоящими.</blockquote><cite>Талиус Лекс де Павленталь</cite></div>
+    <img class="quote-art" src="assets/quote-landscape.jpg" alt="Горный пейзаж в тёплом вечернем свете" loading="lazy">
+  </div>
+</section>
+<div class="reader-shell" id="reading">
+  <div class="reader-heading"><h2>Книга</h2><p>Читайте последовательно или переходите к нужной главе.</p></div>
+  <div class="reader-layout">
+    <aside class="toc-panel" id="contents" aria-label="Оглавление">
+      <button class="mobile-close" id="tocClose" type="button" aria-label="Закрыть оглавление">×</button>
+      <p class="toc-heading">Содержание</p>
+      <a class="toc-link" href="#law"><span>Основной закон</span><small>Принцип</small></a>
+<a class="toc-link" href="#chapter-1"><span>Глава 1. До любви</span><small>Глава 01</small></a>
+<a class="toc-link" href="#chapter-2"><span>Глава 2. Когда начинается Тест-драйв</span><small>Глава 02</small></a>
+<a class="toc-link" href="#chapter-3"><span>Глава 3. Пазл</span><small>Глава 03</small></a>
+<a class="toc-link" href="#chapter-4"><span>Глава 4. Две картины</span><small>Глава 04</small></a>
+<a class="toc-link" href="#chapter-5"><span>Глава 5. Два Тест-драйва</span><small>Глава 05</small></a>
+<a class="toc-link" href="#chapter-6"><span>Глава 6. Маленькие капли</span><small>Глава 06</small></a>
+<a class="toc-link" href="#chapter-7"><span>Глава 7. Тест-драйв не судья</span><small>Глава 07</small></a>
+<a class="toc-link" href="#chapter-8"><span>Глава 8. Когда чувства противоречат друг другу</span><small>Глава 08</small></a>
+<a class="toc-link" href="#chapter-9"><span>Глава 9. Человек меняется</span><small>Глава 09</small></a>
+<a class="toc-link" href="#chapter-10"><span>Глава 10. Мир за пределами пары</span><small>Глава 10</small></a>
+<a class="toc-link" href="#chapter-11"><span>Глава 11. Тест-драйв невозможно обмануть</span><small>Глава 11</small></a>
+<a class="toc-link" href="#chapter-12"><span>Глава 12. Когда картина становится достаточно полной</span><small>Глава 12</small></a>
+<a class="toc-link" href="#chapter-13"><span>Глава 13. Результат</span><small>Глава 13</small></a>
+<a class="toc-link" href="#conclusion"><span>Заключение 1.0. Картина</span><small>Финал</small></a>
+    </aside>
+    <main class="book-text">
+      <section class="book-section" id="law" data-section-title="Основной закон">
+        <div class="section-mast law-mast">
+          <div class="section-mast-copy"><p class="eyebrow">Принцип</p><h2>Основной закон</h2></div>
+          <img class="section-art" src="assets/main-law.jpg" alt="Светящийся фрагмент пазла — образ основного закона" loading="lazy">
+        </div>
+        <div class="prose"><p>Тест-драйв любви измеряется не временем отношений, а количеством и качеством ситуаций, в которых партнёры успели увидеть друг друга настоящими.</p>
+<p>Я не знаю, что такое любовь в её абсолютном смысле. Поэтому я не хочу начинать эту теорию с попытки дать ей идеальное определение. Я предлагаю посмотреть на неё через то, что можно наблюдать.</p>
+<p>Два человека встречаются. Между ними возникает притяжение. Они начинают взаимодействовать. Сначала они знают друг о друге совсем немного. Затем появляются разговоры, встречи, конфликты, примирения, бытовые проблемы, радость, усталость, деньги, работа, перемены и обычные дни.</p>
+<p>Каждое такое взаимодействие оставляет что-то после себя. Иногда это большая деталь. Иногда — почти незаметная капля. Но всё это постепенно складывается в картину.</p>
+<p>Я называю этот процесс Тест-драйвом любви. Он ничего не оценивает и ничего не решает за человека. У него нет шкалы, на которой отношения становятся хорошими или плохими. Он не говорит, кто прав, кто виноват и должны ли люди остаться вместе.</p>
+<p>Он просто фиксирует то, что происходит между ними. Человек может изменить себя — Тест-драйв это увидит. Человек может разрушить отношения — это тоже станет частью картины. Он может сохранить их, развить или просто поддерживать.</p>
+<p>Тест-драйв не выбирает. Он показывает результат взаимодействия.</p>
+<p>Именно поэтому его невозможно измерить только количеством прожитых лет. Пять лет вместе ещё не означают, что два человека действительно увидели друг друга. А несколько месяцев иногда могут дать больше понимания, чем годы совместной жизни.</p>
+<p>Всё зависит от того, сколько настоящей жизни успело произойти между двумя людьми.</p>
+<p>Не время собирает пазл. Его собирает взаимодействие.</p>
+<p>А когда человек однажды смотрит на этот пазл целиком, он может впервые задать себе главный вопрос: «Хочу ли я быть с этим человеком?» Ответ на него уже не принадлежит Тест-драйву. Он принадлежит человеку.</p>
+<blockquote class="pullquote">«Тест-драйв показывает картину. Но выбор остаётся человеком.»</blockquote></div>
+      </section>
+      <section class="book-section chapter" id="chapter-1" data-section-title="Глава 1. До любви">
+      <div class="section-mast chapter-mast">
+        <div class="section-mast-copy"><p class="eyebrow">Глава 01</p><h2>До любви</h2></div>
+        <img class="section-art" src="assets/chapter-01.jpg" alt="Иллюстрация к главе 1: До любви" loading="lazy">
+      </div>
+      <div class="prose"><p>У каждого человека есть собственное начало. Кто-то влюбляется с первого взгляда. Кто-то сначала долго дружит. Кто-то замечает другого человека только после десятка обычных встреч. Поэтому не существует единственной двери, через которую люди входят в отношения.</p>
+<p>Причина первого притяжения тоже у каждого своя. Внешность, голос, запах, юмор, спокойствие, энергия, манера говорить. Иногда человеку нравится даже не конкретная черта, а общее ощущение рядом. Нам может казаться, что мы уже что-то поняли о человеке, хотя на самом деле увидели только небольшую часть.</p>
+<p>Мы часто называем это любовью уже на ранней стадии. Но почувствовать влечение — ещё не значит узнать человека. Можно очень сильно хотеть быть рядом с человеком, которого ты практически не знаешь. В этот момент наше представление о нём неизбежно состоит из догадок, впечатлений и первых наблюдений.</p>
+<p>И это не делает первые чувства ложными. Они настоящие именно как переживание человека в данный момент. Просто они ещё не являются полной картиной. Перед нами пока только первые кусочки пазла.</p>
+<p>Дальше человек перестаёт быть только тем, кого мы увидели в начале. Он начинает проявляться в обычной жизни. И тогда первоначальный образ получает возможность подтвердиться, измениться или разрушиться.</p>
+<blockquote class="pullquote">«Ты можешь захотеть человека ещё до того, как узнаешь его.»</blockquote></div>
+    </section>
+<section class="book-section chapter" id="chapter-2" data-section-title="Глава 2. Когда начинается Тест-драйв">
+      <div class="section-mast chapter-mast">
+        <div class="section-mast-copy"><p class="eyebrow">Глава 02</p><h2>Когда начинается Тест-драйв</h2></div>
+        <img class="section-art" src="assets/chapter-02.jpg" alt="Иллюстрация к главе 2: Когда начинается Тест-драйв" loading="lazy">
+      </div>
+      <div class="prose"><p>У Тест-драйва нет календарной даты. Нельзя открыть ежедневник и отметить: «Сегодня он начался». Он возникает естественно, когда между людьми появляется реальное взаимодействие. Не обязательно после первого свидания и не обязательно после признания в чувствах.</p>
+<p>Сначала мы видим человека в тех обстоятельствах, которые уже сложились. Потом обстоятельства меняются. Меняемся мы. Меняется он. И каждое новое взаимодействие даёт возможность увидеть ещё одну сторону.</p>
+<p>Тест-драйв не требует специально устраивать испытания. Жизнь сама приносит достаточно ситуаций. Ссора может показать одно. Совместная поездка — другое. Финансовая трудность — третье. Обычный вечер, когда никто не старается произвести впечатление, иногда показывает больше, чем красивое свидание.</p>
+<p>Тест-драйв не обязан быть потоком крупных событий. Иногда люди просто разговаривают, смеются, молчат, занимаются своими делами. Даже такая обычная жизнь становится частью опыта.</p>
+<p>Поэтому его продолжительность у разных людей различается. Для одного картина может стать понятной быстро. Другому потребуется значительно больше совместно прожитого опыта. Тест-драйв не устанавливает срок — срок появляется из самой жизни.</p>
+<blockquote class="pullquote">«Тест-драйв не создаёт испытания. Он использует жизнь такой, какая она есть.»</blockquote></div>
+    </section>
+<section class="book-section chapter" id="chapter-3" data-section-title="Глава 3. Пазл">
+      <div class="section-mast chapter-mast">
+        <div class="section-mast-copy"><p class="eyebrow">Глава 03</p><h2>Пазл</h2></div>
+        <img class="section-art" src="assets/chapter-03.jpg" alt="Иллюстрация к главе 3: Пазл" loading="lazy">
+      </div>
+      <div class="prose"><p>Самое простое изображение Тест-драйва — пазл. Каждое взаимодействие оставляет маленькую деталь. Сегодня это разговор. Завтра — поступок. Через месяц — конфликт. Потом примирение. Потом совместное решение.</p>
+<p>Не каждая деталь заметна. Некоторые кажутся совершенно незначительными. Иногда человек даже не понимает, что запомнил какой-то момент. Но позже похожая ситуация может неожиданно вернуть его к этому воспоминанию.</p>
+<p>И здесь появляется другая метафора — капля. Одна капля не наполнит ведро. Но если она падает снова и снова, уровень воды постепенно меняется. Так же и в отношениях: отдельная мелочь может ничего не решить, но множество мелочей становится общей историей.</p>
+<p>Пазл не обязан собираться ровно. Некоторые кусочки могут долго лежать отдельно. Некоторые оказываются перевёрнутыми, и только позже становится понятно, куда они подходят. Поэтому человек не всегда способен сразу объяснить, почему его отношение к партнёру изменилось.</p>
+<p>Тест-драйв не обязан искать только большие события. Его материалом становится вся динамика взаимодействия — от самых заметных поступков до почти незаметных деталей.</p>
+<blockquote class="pullquote">«Незначительная деталь может не изменить картину сегодня. Но она всё равно становится её частью.»</blockquote></div>
+    </section>
+<section class="book-section chapter" id="chapter-4" data-section-title="Глава 4. Две картины">
+      <div class="section-mast chapter-mast">
+        <div class="section-mast-copy"><p class="eyebrow">Глава 04</p><h2>Две картины</h2></div>
+        <img class="section-art" src="assets/chapter-04.jpg" alt="Иллюстрация к главе 4: Две картины" loading="lazy">
+      </div>
+      <div class="prose"><p>Пара может пережить одно и то же событие, но выйти из него с совершенно разными ощущениями. Один может считать разговор обычным, а другой — впервые почувствовать себя непонятым.</p>
+<p>Для одного разговор закончился вместе с последней фразой. Для другого он продолжился в голове ещё несколько дней. Один человек может считать отношения крепкими. Другой уже может чувствовать расстояние между ними.</p>
+<p>Это не обязательно означает, что кто-то ошибается. Они просто смотрят на одну историю из разных точек. У каждого есть собственная память, ожидания и способ воспринимать происходящее.</p>
+<p>Поэтому у каждого партнёра складывается собственная картина. Она создаётся из общих событий, но проходит через личный опыт, характер, прошлое и собственное восприятие.</p>
+<p>Нельзя просто сложить две картины и получить одну абсолютно точную версию отношений. Они пересекаются, но не становятся одинаковыми. В этом есть одна из особенностей человеческой близости.</p>
+<blockquote class="pullquote">«Мы можем жить в одних отношениях и всё равно видеть их по-разному.»</blockquote></div>
+    </section>
+<section class="book-section chapter" id="chapter-5" data-section-title="Глава 5. Два Тест-драйва">
+      <div class="section-mast chapter-mast">
+        <div class="section-mast-copy"><p class="eyebrow">Глава 05</p><h2>Два Тест-драйва</h2></div>
+        <img class="section-art" src="assets/chapter-05.jpg" alt="Иллюстрация к главе 5: Два Тест-драйва" loading="lazy">
+      </div>
+      <div class="prose"><p>Картины двух людей не существуют отдельно друг от друга. Они постоянно влияют одна на другую. Отношения можно представить как движение двух людей, которые одновременно наблюдают друг за другом и сами становятся объектом наблюдения.</p>
+<p>Если один человек становится холоднее, второй замечает это. Его реакция меняет поведение первого. Новое поведение снова становится опытом для второго. Иногда достаточно одной фразы, чтобы запустить цепочку, которая продолжится намного дольше самой беседы.</p>
+<p>Получается движение: один поступок вызывает реакцию, реакция вызывает новую реакцию, и так отношения постепенно меняются. При этом никто не обязан специально планировать этот процесс.</p>
+<p>Два Тест-драйва никогда не превращаются в один. Каждый человек продолжает собирать собственную картину. Один может увидеть в событии доказательство заботы, другой — попытку контролировать.</p>
+<p>Поэтому отношения нельзя полностью описать только словами одного партнёра. Два человека одновременно проживают одну связь, но фиксируют её по-разному.</p>
+<blockquote class="pullquote">«Два человека могут проживать одну историю, но собирать из неё разные картины.»</blockquote></div>
+    </section>
+<section class="book-section chapter" id="chapter-6" data-section-title="Глава 6. Маленькие капли">
+      <div class="section-mast chapter-mast">
+        <div class="section-mast-copy"><p class="eyebrow">Глава 06</p><h2>Маленькие капли</h2></div>
+        <img class="section-art" src="assets/chapter-06.jpg" alt="Иллюстрация к главе 6: Маленькие капли" loading="lazy">
+      </div>
+      <div class="prose"><p>Не существует правила, согласно которому в Тест-драйв должны попадать только значимые события. Событие может затронуть одного партнёра, обоих или отношения целиком. Оно может быть большим, а может выглядеть настолько обычным, что никто не придаст ему значения.</p>
+<p>Человек может десять раз забыть о какой-то мелочи. Каждый отдельный случай кажется неважным. Но на одиннадцатый раз партнёр вдруг понимает, что дело уже не в конкретной мелочи. За ней стоит накопившаяся история.</p>
+<p>И наоборот: множество маленьких проявлений заботы постепенно создают ощущение безопасности, даже если ни одно из них само по себе не было великим поступком.</p>
+<p>Мы часто замечаем результат раньше, чем замечаем накопление. Человек вдруг говорит: «Я больше не чувствую себя рядом с ним спокойно». Но это ощущение могло формироваться месяцами.</p>
+<p>В этом и заключается накопление. Тест-драйв не обязан ставить события на весы. Он просто продолжает собирать то, что происходит.</p>
+<blockquote class="pullquote">«Колодец наполняется не одной большой каплей.»</blockquote></div>
+    </section>
+<section class="book-section chapter" id="chapter-7" data-section-title="Глава 7. Тест-драйв не судья">
+      <div class="section-mast chapter-mast">
+        <div class="section-mast-copy"><p class="eyebrow">Глава 07</p><h2>Тест-драйв не судья</h2></div>
+        <img class="section-art" src="assets/chapter-07.jpg" alt="Иллюстрация к главе 7: Тест-драйв не судья" loading="lazy">
+      </div>
+      <div class="prose"><p>Если Тест-драйв не выносит оценку, возникает вопрос: тогда зачем он вообще нужен? Затем, что увидеть картину и вынести ей оценку — разные вещи.</p>
+<p>Один человек может простить измену. Другой — никогда. Для одного финансовые трудности становятся причиной сблизиться и решать проблему вместе. Для другого они показывают несовместимость.</p>
+<p>Одинаковое событие не имеет одинакового значения для всех людей. Даже одна и та же деталь может менять своё значение со временем.</p>
+<p>Поэтому Тест-драйв не должен решать, какая деталь важнее. Если он начнёт это делать, он перестанет быть записью опыта и превратится в судью.</p>
+<p>Он не говорит: «Это хорошо». Он не говорит: «Это плохо». Он показывает: «Вот что произошло. Вот что успело стать частью вашей истории». А дальше вступает человек со своими ценностями, границами и выбором.</p>
+<blockquote class="pullquote">«Тест-драйв показывает картину. Человек решает, что эта картина для него значит.»</blockquote></div>
+    </section>
+<section class="book-section chapter" id="chapter-8" data-section-title="Глава 8. Когда чувства противоречат друг другу">
+      <div class="section-mast chapter-mast">
+        <div class="section-mast-copy"><p class="eyebrow">Глава 08</p><h2>Когда чувства противоречат друг другу</h2></div>
+        <img class="section-art" src="assets/chapter-08.jpg" alt="Иллюстрация к главе 8: Когда чувства противоречат друг другу" loading="lazy">
+      </div>
+      <div class="prose"><p>Человек редко чувствует что-то одно. Мы привыкли искать простые ответы: люблю или не люблю, хочу или не хочу, хорошо или плохо. Но реальная жизнь гораздо сложнее этих двух вариантов.</p>
+<p>Можно любить и злиться. Хотеть остаться и думать об уходе. Быть благодарным и одновременно разочарованным. Скучать по человеку, рядом с которым тебе тяжело.</p>
+<p>Эти состояния не обязаны отменять друг друга. Человек может видеть в партнёре огромное количество хорошего и одновременно понимать, что некоторые вещи для него неприемлемы.</p>
+<p>Тест-драйв не должен выбирать одно чувство и объявлять его единственно настоящим. Он фиксирует сложность человеческого опыта. В одной картине могут находиться противоположные детали.</p>
+<p>Сомнение само по себе не является пустотой. Иногда оно показывает, что человек видит сразу несколько сторон своей реальности и пока не знает, какую из них сделать основанием для выбора.</p>
+<p>Человеку всё равно придётся самому решить, чему он доверяет и что собирается делать дальше.</p>
+<blockquote class="pullquote">«Противоречие в чувствах не делает их ненастоящими.»</blockquote></div>
+    </section>
+<section class="book-section chapter" id="chapter-9" data-section-title="Глава 9. Человек меняется">
+      <div class="section-mast chapter-mast">
+        <div class="section-mast-copy"><p class="eyebrow">Глава 09</p><h2>Человек меняется</h2></div>
+        <img class="section-art" src="assets/chapter-09.jpg" alt="Иллюстрация к главе 9: Человек меняется" loading="lazy">
+      </div>
+      <div class="prose"><p>За пять лет отношений человек может стать совсем другим. Меняются цели, привычки, взгляды, характер, отношение к семье, деньгам, работе и самому себе.</p>
+<p>Но это не отдельный процесс, который существует рядом с Тест-драйвом. Если человек изменился за эти годы, Тест-драйв уже находится внутри этой истории. Он продолжал собирать новые детали.</p>
+<p>Сегодня партнёр один. Через несколько лет — уже немного другой. И именно таким он становится частью картины отношений в этот период.</p>
+<p>Нельзя навсегда зафиксировать человека только в том виде, в котором мы встретили его. Начальная версия человека — лишь одна часть истории.</p>
+<p>Поэтому результат не обязан оставаться одинаковым навсегда. Новая реальность может изменить картину, а значит, человек может пересмотреть собственное решение.</p>
+<blockquote class="pullquote">«Тест-драйв не меняет человека. Он продолжает записывать то, каким человек становится.»</blockquote></div>
+    </section>
+<section class="book-section chapter" id="chapter-10" data-section-title="Глава 10. Мир за пределами пары">
+      <div class="section-mast chapter-mast">
+        <div class="section-mast-copy"><p class="eyebrow">Глава 10</p><h2>Мир за пределами пары</h2></div>
+        <img class="section-art" src="assets/chapter-10.jpg" alt="Иллюстрация к главе 10: Мир за пределами пары" loading="lazy">
+      </div>
+      <div class="prose"><p>Не всё, что влияет на отношения, начинается внутри отношений. Два человека могут прекрасно понимать друг друга, но затем в их жизнь входит обстоятельство, которого раньше не было.</p>
+<p>Потеря работы, переезд, проблемы с родственниками, появление ребёнка, финансовые трудности или другое тяжёлое событие может изменить человека.</p>
+<p>Само событие не обязано быть испытанием пары. Но если оно затронуло одного из партнёров, обоих или их связь, оно становится частью той же истории.</p>
+<p>Важна не громкость события, а то, что оно сделало с взаимодействием. Один и тот же переезд для одной пары может стать приключением, а для другой — причиной постоянных конфликтов.</p>
+<p>Отношения не существуют в вакууме. Два человека всегда живут ещё и в мире вокруг них. Поэтому Тест-драйв включает в картину не только то, что происходит между двумя людьми, но и то, как они проходят через внешний мир.</p>
+<blockquote class="pullquote">«Иногда в отношения входит не третья любовь, а третье обстоятельство.»</blockquote></div>
+    </section>
+<section class="book-section chapter" id="chapter-11" data-section-title="Глава 11. Тест-драйв невозможно обмануть">
+      <div class="section-mast chapter-mast">
+        <div class="section-mast-copy"><p class="eyebrow">Глава 11</p><h2>Тест-драйв невозможно обмануть</h2></div>
+        <img class="section-art" src="assets/chapter-11.jpg" alt="Иллюстрация к главе 11: Тест-драйв невозможно обмануть" loading="lazy">
+      </div>
+      <div class="prose"><p>Можно обмануть партнёра. Можно скрывать часть себя. Можно стараться казаться спокойнее, добрее, сильнее или увереннее, чем ты есть.</p>
+<p>Но невозможно отменить то, что уже произошло. Даже если человек потом изменил поведение, событие всё равно стало частью прожитого опыта.</p>
+<p>При этом Тест-драйв не всевидящий. Он не читает мысли и не видит скрытое будущее. Если человек никогда не проявил какую-то сторону себя, её просто нет в собранной картине.</p>
+<p>Тест-драйв не знает человека больше, чем знает его жизнь. Он работает только с взаимодействием и тем, что через него стало доступно другому.</p>
+<p>Можно скрыть часть себя от другого человека. Нельзя отменить то, что уже произошло. Именно поэтому Тест-драйв невозможно «наебать» задним числом: прожитое уже существует как факт отношений.</p>
+<blockquote class="pullquote">«Можно скрыть часть себя от другого человека. Нельзя отменить то, что уже произошло.»</blockquote></div>
+    </section>
+<section class="book-section chapter" id="chapter-12" data-section-title="Глава 12. Когда картина становится достаточно полной">
+      <div class="section-mast chapter-mast">
+        <div class="section-mast-copy"><p class="eyebrow">Глава 12</p><h2>Когда картина становится достаточно полной</h2></div>
+        <img class="section-art" src="assets/chapter-12.jpg" alt="Иллюстрация к главе 12: Когда картина становится достаточно полной" loading="lazy">
+      </div>
+      <div class="prose"><p>Полной — не в смысле идеальной или окончательной. Полной настолько, насколько человеку самому достаточно, чтобы увидеть отношения целиком.</p>
+<p>Один человек приходит к этому через несколько месяцев. Другой — через несколько лет. Третий может так и продолжать сомневаться. Здесь нет универсального срока.</p>
+<p>Если человек говорит: «Я не знаю, хочу ли я быть с ним», это тоже состояние картины. Возможно, в ней ещё недостаточно деталей, чтобы он увидел собственный ответ. А возможно, наоборот, деталей уже много, но они противоречат друг другу.</p>
+<p>В этот момент человек перестаёт смотреть только на отдельные эпизоды. Он начинает видеть всю историю: каким был партнёр, каким стал, что произошло между ними и каким стал он сам рядом с этим человеком.</p>
+<p>И тогда появляется вопрос, который нельзя решить за человека.</p>
+<blockquote class="pullquote">«Хочу ли я быть с этим человеком?»</blockquote></div>
+    </section>
+<section class="book-section chapter" id="chapter-13" data-section-title="Глава 13. Результат">
+      <div class="section-mast chapter-mast">
+        <div class="section-mast-copy"><p class="eyebrow">Глава 13</p><h2>Результат</h2></div>
+        <img class="section-art" src="assets/chapter-13.jpg" alt="Иллюстрация к главе 13: Результат" loading="lazy">
+      </div>
+      <div class="prose"><p>Результат Тест-драйва — это не оценка отношений и не готовая инструкция. Это картина, которая сформировалась из всего прожитого.</p>
+<p>Человек может посмотреть на неё и сказать: «Да, я хочу продолжать». Может сказать: «Нет». Может понять, что хочет что-то изменить. Может увидеть, что пока не знает.</p>
+<p>Даже если решение кажется другим людям неправильным, оно всё равно остаётся выбором того человека, который прожил этот Тест-драйв. Потому что именно он знает, как ощущалась эта история изнутри.</p>
+<p>В этом и заключается принцип свободы выбора. Тест-драйв может показать человеку картину, но не может взять ответственность за его решение.</p>
+<p>Именно здесь заканчивается первая версия концепции. Не заканчиваются отношения и не заканчивается жизнь пары. Заканчивается первый этап понимания того, что именно мы называем любовью.</p>
+<blockquote class="pullquote">«Тест-драйв показывает результат. Но выбор остаётся человеком.»</blockquote></div>
+    </section>
+      <section class="book-section chapter conclusion-section" id="conclusion" data-section-title="Заключение 1.0. Картина">
+      <div class="section-mast chapter-mast">
+        <div class="section-mast-copy"><p class="eyebrow">Финал</p><h2>Заключение 1.0. Картина</h2></div>
+        <img class="section-art" src="assets/conclusion.jpg" alt="Иллюстрация к заключению: собранный пазл на фоне заката" loading="lazy">
+      </div>
+      <div class="prose"><p>Если собрать всё вместе, получается довольно простая вещь.</p><p>Два человека встречаются. Между ними появляется притяжение. Они начинают взаимодействовать. Жизнь приносит им события. Они реагируют друг на друга. Маленькие детали накапливаются. Большие события тоже становятся частью истории. Люди меняются, и эти изменения продолжают входить в картину.</p><p>У каждого человека при этом формируется собственное восприятие. Картины пересекаются, потому что жизнь у пары общая, но никогда не становятся абсолютно одинаковыми.</p><p>В какой-то момент человек смотрит на всё прожитое и видит уже не отдельные эпизоды, а целое.</p><p>И дальше начинается самое человеческое. Можно сохранить. Можно изменить. Можно развить. Можно просто поддерживать. Можно разрушить.</p><p>Но это уже не решение Тест-драйва. Это выбор человека.</p><blockquote class="pullquote">«Тест-драйв не говорит, кого любить. Он показывает, что получилось из того, что два человека прожили вместе.»</blockquote></div>
+    </section>
+      <div class="end-note"><p>«Тест-драйв не говорит, кого любить. Он показывает, что получилось из того, что два человека прожили вместе.»</p></div>
+    </main>
+  </div>
+</div>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<div class="theme-toast" id="themeToast" role="status" aria-live="polite">Тема: Бумага</div>
+<footer class="footer"><span>Талиус Лекс де Павленталь</span><span>«Пока мы выбираем друг друга» · Тест-драйв любви — 1.0</span><span><a href="#top">В начало ↑</a></span></footer>
+<script>
+(function(){
+  const body = document.body;
+  const tocToggle = document.getElementById('tocToggle');
+  const tocClose = document.getElementById('tocClose');
+  const scrim = document.getElementById('scrim');
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = themeToggle.querySelector('.theme-icon');
+  const themeToast = document.getElementById('themeToast');
+  const fontDown = document.getElementById('fontDown');
+  const fontUp = document.getElementById('fontUp');
+  const progressFill = document.getElementById('progressFill');
+  let fontSize = 19;
+  const themes = [
+    { id: 'paper', name: 'Бумага', icon: '◐', color: '#f6f0e7' },
+    { id: 'night', name: 'Ночь', icon: '☾', color: '#17121d' },
+    { id: 'rose', name: 'Рассвет', icon: '☼', color: '#f4e2e6' }
+  ];
+  let toastTimer;
+  function applyTheme(themeId, announce = false) {
+    const theme = themes.find(item => item.id === themeId) || themes[0];
+    body.setAttribute('data-theme', theme.id);
+    themeIcon.textContent = theme.icon;
+    themeToggle.setAttribute('aria-label', 'Текущая тема: ' + theme.name + '. Нажмите, чтобы сменить');
+    themeToggle.title = 'Тема: ' + theme.name + ' — нажмите, чтобы сменить';
+    themeToggle.setAttribute('aria-pressed', theme.id !== 'paper' ? 'true' : 'false');
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', theme.color);
+    if (announce) {
+      themeToast.textContent = 'Тема: ' + theme.name;
+      themeToast.classList.add('visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => themeToast.classList.remove('visible'), 1700);
+    }
+    try { localStorage.setItem('test-drive-love-theme', theme.id); } catch (_) {}
+  }
+  try {
+    const savedTheme = localStorage.getItem('test-drive-love-theme');
+    if (savedTheme && themes.some(item => item.id === savedTheme)) applyTheme(savedTheme, false);
+    else applyTheme('paper', false);
+  } catch (_) { applyTheme('paper', false); }
+
+  function setFontSize(next) {
+    fontSize = Math.max(16, Math.min(27, next));
+    body.style.setProperty('--reader-size', fontSize + 'px');
+    fontDown.disabled = fontSize <= 16;
+    fontUp.disabled = fontSize >= 27;
+    fontDown.style.opacity = fontDown.disabled ? '.45' : '1';
+    fontUp.style.opacity = fontUp.disabled ? '.45' : '1';
+  }
+  fontDown.addEventListener('click', () => setFontSize(fontSize - 1));
+  fontUp.addEventListener('click', () => setFontSize(fontSize + 1));
+  themeToggle.addEventListener('click', () => {
+    const current = body.getAttribute('data-theme') || 'paper';
+    const index = themes.findIndex(item => item.id === current);
+    const next = themes[(index + 1) % themes.length];
+    applyTheme(next.id, true);
+  });
+  function closeToc() {
+    body.classList.remove('toc-open');
+    tocToggle.setAttribute('aria-expanded', 'false');
+  }
+  tocToggle.addEventListener('click', () => {
+    const open = !body.classList.contains('toc-open');
+    body.classList.toggle('toc-open', open);
+    tocToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  tocClose.addEventListener('click', closeToc);
+  scrim.addEventListener('click', closeToc);
+  document.querySelectorAll('.toc-link').forEach(link => link.addEventListener('click', closeToc));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeToc(); });
+
+  const links = Array.from(document.querySelectorAll('.toc-link'));
+  const targets = links.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      links.forEach(link => {
+        const active = link.getAttribute('href') === '#' + visible.target.id;
+        link.classList.toggle('active', active);
+        if (active) link.setAttribute('aria-current','location'); else link.removeAttribute('aria-current');
+      });
+    }, {rootMargin:'-18% 0px -65% 0px', threshold:[0,.1,.25,.5]});
+    targets.forEach(target => observer.observe(target));
+  }
+  let ticking = false;
+  function updateProgress() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? Math.max(0, Math.min(100, window.scrollY / max * 100)) : 0;
+    progressFill.style.width = pct + '%'; ticking = false;
+  }
+  window.addEventListener('scroll', () => { if (!ticking) { window.requestAnimationFrame(updateProgress); ticking = true; } }, {passive:true});
+  window.addEventListener('resize', updateProgress);
+  updateProgress(); setFontSize(fontSize);
+})();
+</script>
+</body>
+</html>
